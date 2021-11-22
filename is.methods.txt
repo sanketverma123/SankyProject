@@ -1,0 +1,37 @@
+package vel.com.webelementstatus;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+import configuration.PathConfiguration;
+
+public class WebElementStatus {
+	
+	public static void main(String[] args) throws InterruptedException {
+		
+		System.setProperty("webdriver.chrome.driver", PathConfiguration.driverPath);
+		WebDriver driver=new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.get(PathConfiguration.appUrl);
+		Thread.sleep(2000);
+		
+		//isEnabled
+		boolean elementStatus = driver.findElement(By.xpath("//button[@name='websubmit']")).isEnabled();		
+		System.out.println("Button status: "+elementStatus);
+		
+		
+		//isSelected
+		driver.findElement(By.xpath("//input[@value='2']")).click();		
+		boolean radioStatus = driver.findElement(By.xpath("//input[@value='2']")).isSelected();
+		System.out.println("Radio button status: "+radioStatus);
+		
+		//isDispayed
+		boolean elementDisplay = driver.findElement(By.xpath("//button[@type='submit']")).isDisplayed();
+		System.out.println("Element displayed on page: "+elementDisplay);
+		
+		
+		
+	}
+
+}
